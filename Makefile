@@ -33,7 +33,9 @@ stubble.efi: stubble
 stubble: $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-install: stubble.efi
+install: stubble.efi stubblify
+	install -m 755 -d ${DESTDIR}${PREFIX}/bin
+	install -m 755 -t ${DESTDIR}${PREFIX}/bin stubblify
 	install -m 755 -d ${DESTDIR}${PREFIX}/lib/stubble
 	install -m 644 -t ${DESTDIR}${PREFIX}/lib/stubble stubble.efi
 	install -m 755 -d ${DESTDIR}${PREFIX}/share/stubble/hwids
